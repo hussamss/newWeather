@@ -1,0 +1,192 @@
+<!doctype html>
+<!--suppress XmlDuplicatedId -->
+<html class="no-js" lang="en" dir="ltr">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>.getWeather</title>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/foundation.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <style> @import url('https://fonts.googleapis.com/css?family=Dosis'); </style>
+</head>
+<body>
+<div id="wholePage">
+<!--============================================================================================================================-->
+<!-- Hero Section -->
+<!--============================================================================================================================-->
+<section >
+    <div class="row">
+        <div  class="small-12 medium-4 large-4 large-offset-4 medium-offset-4  columns city">
+            <h2 class="theCity" id="theCity"></h2>
+        </div>
+    </div>
+    <!--Weather warning if exists ------------------------------------------------------------------------>
+    <div class="myWarning" style="display: none;">
+        <div class="row">
+            <div class="small-12 small-centered columns padding-left: 0px;  padding-right: 11px;">
+                <div data-alert class="alert-box alert radius">
+                    <strong class="warningDesc"></strong>
+                    <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--========================= ------------------------------------------------------------------------>
+
+    <div class="hide-for-large">
+
+        <div class="small-8 small-centered columns">
+
+            <src id="condition"></src>
+            <h1 id="theTemp" class="small-8 small-centered columns temp " style="margin-left: 25%;"></h1>
+
+        </div>
+
+
+    </div>
+    <div class="row" style="padding-top: 5%;">
+        <div class="show-for-large">
+            <div class="row">
+                <div class="small-6 large-7 columns">
+                    
+                    <src id="condition"></src>
+                    
+                    
+                    <h1 id="theTempL" class="medium-1 large-1 temp "></h1>
+                    
+                </div>
+
+                <div class="small-3 medium-3 large-5 columns" style="padding-left: 147px; padding-right: 27px;">
+
+
+
+                <div class="small-12 medium-12 large-12  columns content" style="padding-bottom: 60px;">
+
+                    <!--<img src="images/date.png" width="40" height="40">-->
+                    <h4 class="text-left rightData" id="theDay"></h4>
+                </div>
+
+                <div class="small-12 medium-12 large-12  columns content" style="padding-bottom: 60px;">
+
+                    <!--<img src="images/partlyCloudy.png" width="40" height="40">-->
+                    <h4 class="text-left rightData" id="theCondition"></h4>
+                </div>
+
+                <div class="small-12 medium-12 large-12  columns content" style="padding-bottom: 60px;">
+
+                    <!--<img src="images/wind.png" width="40" height="40">-->
+                    <h4 class="text-left rightData" id="theWind"></h4>
+                </div>
+
+                <!--<div class="small-12 medium-12 large-12  columns content" style="padding-bottom: 60px;">-->
+
+                    <!--<img src="images/partlyCloudy.png" width="40" height="40">-->
+                    <!--<h4 class="text-left rightData" id="theMax"></h4>-->
+                <!--</div>-->
+            </div>
+
+
+
+
+            <div class="small-5  large-1 columns"><!-- ... --></div>
+
+            <div class="small-6 small-offset-2 large-6 large-offset-3 medium-6 medium-offset-3 columns">
+                <form class="form">
+                    <input type="text" placeholder="Type your location, e.g. Victoria, BC  " id="cityName"/>
+                </form>
+                <p id="notFound" class="text-center" hidden="true">type City, PR e.g. Victoria, BC</p>
+            </div>
+         
+        <div class=" small-2 large-3 medium-3 columns">
+            <a class="fa fa-map-marker fa-3x " style="color:white;" aria-hidden="true" id="findWeather"></a>
+            
+        </div>
+    </div>
+        </div>
+    </div>
+
+
+</section>
+
+
+
+<!--============================================================================================================================-->
+<!-- Main Content -->
+<!--============================================================================================================================-->
+
+
+<!--============================================================================================================================-->
+<!-- Footer       -->
+<!--============================================================================================================================-->
+<footer class="footer">
+    <div class="show-for-large">
+        <div class="row">
+            <div class="small-3 medium-3 large-3  columns" style="  padding-right: 14px; padding-left: 0px;">
+                <div class="nextDays small-12 medium-12 large-12 text-center">
+                    <h4 class="theNextDay1" id="day1Name"></h4>
+                    <src  id="day1Icon" class="text-center"></src>
+                    <h4  id="nextDay1Deg"></h4>
+                </div>
+            </div>
+            <div class="small-3 medium-3 large-3  columns" style="  padding-right: 14px; padding-left: 0px;">
+                <div class="nextDays small-12 medium-12 large-12 text-center">
+                    <h4 class="theNextDay" id="day2Name"></h4>
+                    <src  id="day2Icon" class="text-center"></src>
+                    <h4  id="nextDay2Deg"></h4>
+
+                </div>
+            </div>
+            <div class="small-3 medium-3 large-3  columns" style="  padding-right: 14px; padding-left: 0px;">
+                <div class="nextDays small-12 medium-12 large-12 text-center">
+                    <h4 class="theNextDay" id="day3Name"></h4>
+                    <src  id="day3Icon" class="text-center"></src>
+                    <h4  id="nextDay3Deg"></h4>
+                </div>
+            </div>
+
+            <div class="small-3 medium-3 large-3  columns" style="  padding-right: 10px; padding-left: 0px;">
+                <div class="nextDays small-12 medium-12 large-12 text-center">
+                    <h4 class="theNextDay" id="day4Name"></h4>
+                    <src  id="day4Icon" class="text-center"></src>
+                    <h4  id="nextDay4Deg"></h4>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="small-6 small-centered row" style=" margin-top: 5%;">
+            <p class="love">Made with <i class="fa fa-heart" aria-hidden="true" style="color:#384058;" ></i> by htayeb & hussams1</p>
+        </div>
+    </div>
+    <div class="hide-for-large" style=" margin-top: 5%;">
+        <div class="small-6 small-centered row">
+            <div class="small-6  column">
+            <i class="fa fa-refresh fa-5x" aria-hidden="true" onClick="history.go(0)"></i>
+            </div>
+
+            <div class="small-6 column">
+                <!--Once Index is fixed replace to go to index.html-->
+            <i class="fa fa-arrow-left fa-5x" aria-hidden="true" onClick="history.go(0)"></i>
+            </div>
+        </div>
+    </div>
+
+</footer>
+
+<!--============================================================================================================================-->
+<!--Scripts-->
+<!--============================================================================================================================-->
+</div>
+<script src="js/locationDetection.js"></script>
+<script src="js/citiesProsNames.js"></script>
+<script src="js/data.js"></script>
+<script src="js/vendor/what-input.js"></script>
+<script src="js/vendor/foundation.js"></script>
+<script src="js/app.js"></script>
+
+</body>
