@@ -11,7 +11,7 @@ navigator.geolocation.getCurrentPosition(success, error);
     // var geocoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 51.131470 + '%2C' + -114.010559 + '&language=en';//Calgary test
     // var geocoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 52.146973 + '%2C' + -106.647034 + '&language=en';//Saskatoon test
     // var geocoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 49.895077 + '%2C' + -97.138451+ '&language=en';//Winnpeg test
-    // var geocoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 43.653908 + '%2C' + -79.384293+ '&language=en';//Toronto test
+    var geocoding = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + 43.653908 + '%2C' + -79.384293+ '&language=en';//Toronto test
     
     
 
@@ -20,9 +20,11 @@ navigator.geolocation.getCurrentPosition(success, error);
         // fetch the results to find the City and Province for auto detect of weather function
         // location.results[3] contains the address of the city, province, country
         var tempLocation = location.results[3].formatted_address;
+       
         // regExp for the city and province 
         var addressPat = /(\w+|\w+ \w+), (AB|BC|ON|MB|QC|SK|NL|NS|NU|NT|YT|PE|NB)/;
         var cityProName = addressPat.exec(tempLocation);
+
         // location.results[3] contains the city, province, country, info
         // some case it may be null, we fetch location.results[2] to get more
         // info about the location and extract the city and province.
@@ -50,5 +52,5 @@ navigator.geolocation.getCurrentPosition(success, error);
 
 }
     function error(err) {
-    console.log(err)
+    // console.log(err)
     }
